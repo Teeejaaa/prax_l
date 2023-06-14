@@ -12,8 +12,36 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
       <li><a class="<?= ($activePage == 'index') ? 'active':''; ?>" href="index.php">Domovská stránka</a></li>
       <li><a class="<?= ($activePage == 'program') ? 'active':''; ?>"  href="program.php">Program</a></li>
       <li><a class="<?= ($activePage == 'contacts') ? 'active':''; ?>" href="contacts.php">Spolupráce</a></li>
-      <li><a class="<?= ($activePage == 'login') ? 'active':''; ?>" href="login.php">Přihlášení</a></li>
-      <li><a class="<?= ($activePage == 'register') ? 'active':''; ?>" href="register.php">Registrace</a></li>
+     
+      <?php 
+                if(!isset($_SESSION["email"]))
+                {
+                    $active=($activePage == 'register') ? 'rn':'';
+                    echo '<li class="$active" ><a href="./register.php">Registrovat se</a></li>';
+                    $active=($activePage == 'login') ? 'rn':'';
+                    echo '<li class="last $active" ><a  href="./login.php">Přihlásit se</a></li>';
+
+
+                }
+                else
+                {
+                       if($_SESSION["opravneni"]==1)
+                        {
+                            $active=($activePage == 'uzivatele') ? 'rn':'';
+                            echo '<li class=" $active" ><a  href="./uzivatele.php">Uživatelé</a></li>';
+
+
+                        } 
+                    $active=($activePage == 'login') ? 'rn':'';
+                    echo '<li class="last $active" ><a  href="./logut.php">Odhlásit se</a></li>';
+                                        
+                }
+
+
+
+           ?>
+    
+    
     </ul>
     <i class="bi bi-list mobile-nav-toggle"></i>
   </nav>

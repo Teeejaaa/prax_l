@@ -1,3 +1,8 @@
+<?php
+session_start();
+include "./db.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +20,7 @@ include "./menu.php";
   <section id="hero" class="d-flex justify-content-center align-items-center">
     <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
       <h1>Hravé odpoledne<br>v Moravské Ostravě</h1>
-      <a href="courses.html" class="btn-get-started">Program</a>
+      <a href="./program.php" class="btn-get-started">Program</a>
     </div>
   </section>
 
@@ -73,34 +78,38 @@ include "./menu.php";
               #text
               </p>
               <div class="text-center">
-                <a href="contacts.php" class="more-btn">Číst více...<i class="bx bx-chevron-right"></i></a>
+                <a href="./contacts.php" class="more-btn">Číst více...<i class="bx bx-chevron-right"></i></a>
               </div>
             </div>
           </div>
+
+
           <div class="col-lg-8 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
             <div class="icon-boxes d-flex flex-column justify-content-center">
               <div class="row">
+          <?php
+            $query1=$conn->prepare("select nazev,obraz,popis,facebok,insta from spoluprace order by RAND() limit 3;");
+            $query1->execute();
+            $query1->store_result();
+            $query1->bind_result($nazev,$obraz,$popis,$facebok,$insta);
+            $akcikarray=array();
+            while($spol=$query1->fetch())
+                  {
+                    echo '
                 <div class="col-xl-4 d-flex align-items-stretch">
                   <div class="icon-box mt-4 mt-xl-0">
                     <i class="bx bx-receipt"></i>
-                    <h4>Corporis voluptates sit</h4>
-                    <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                    <h4>'.$nazev.'</h4>
+                    <p>'.$popis.'</p>
                   </div>
-                </div>
-                <div class="col-xl-4 d-flex align-items-stretch">
-                  <div class="icon-box mt-4 mt-xl-0">
-                    <i class="bx bx-cube-alt"></i>
-                    <h4>Ullamco laboris ladore pan</h4>
-                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
-                  </div>
-                </div>
-                <div class="col-xl-4 d-flex align-items-stretch">
-                  <div class="icon-box mt-4 mt-xl-0">
-                    <i class="bx bx-images"></i>
-                    <h4>Labore consequatur</h4>
-                    <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
-                  </div>
-                </div>
+                </div>';
+
+
+                  }
+                
+
+
+          ?>
               </div>
             </div>
           </div>
@@ -116,8 +125,8 @@ include "./menu.php";
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Courses</h2>
-          <p>Popular Courses</p>
+          <h2>Akce</h2>
+          
         </div>
 
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
@@ -126,8 +135,8 @@ include "./menu.php";
             <div class="course-item">
               <img src="assets/img/course-1.jpg" class="img-fluid" alt="...">
               <div class="course-content">
-                <h3><a href="course-details.html">Website Design</a></h3>
-                <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
+                <h3><a href="course-details.html">Akce 1</a></h3>
+                <p>#text_databaze</p>
               </div>
             </div>
           </div> 
@@ -136,8 +145,8 @@ include "./menu.php";
             <div class="course-item">
               <img src="assets/img/course-2.jpg" class="img-fluid" alt="...">
               <div class="course-content">
-                <h3><a href="course-details.html">Search Engine Optimization</a></h3>
-                <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
+                <h3><a href="course-details.html">Akce 2</a></h3>
+                <p>#text_databaze</p>
               </div>
             </div>
           </div> 
@@ -146,8 +155,8 @@ include "./menu.php";
             <div class="course-item">
               <img src="assets/img/course-3.jpg" class="img-fluid" alt="...">
               <div class="course-content">
-                <h3><a href="course-details.html">Copywriting</a></h3>
-                <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
+                <h3><a href="course-details.html">Akce 3</a></h3>
+                <p>#text_databaze</p>
               </div>
             </div>
           </div> 

@@ -1,3 +1,9 @@
+<?php
+session_start();
+include './db.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,84 +14,71 @@ include "./header.php";
 
 <body>
 
-<?php
-include "./menu.php"; 
-?>
 
-  <main id="main">
 
-    
-    <div class="breadcrumbs" data-aos="fade-in">
-      <div class="container">
-        <h2>Contact Us</h2>
-        <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p>
-      </div>
-    </div>
+<main id="main">
 
    
-    <section id="contact" class="contact">
+<div class="breadcrumbs" data-aos="fade-in">
+  <div class="container">
+    <h2>Přihlášení</h2>
+    <p>#text_maybe</p>
+  </div>
+</div>
 
-      <div class="container" data-aos="fade-up">
 
-        <div class="row mt-5">
+<section id="contact" class="contact">
 
-          <div class="col-lg-4">
-            <div class="info">
-              <div class="address">
-                <i class="bi bi-geo-alt"></i>
-                <h4>Location:</h4>
-                <p>A108 Adam Street, New York, NY 535022</p>
-              </div>
+  <div class="container" data-aos="fade-up">
 
-              <div class="email">
-                <i class="bi bi-envelope"></i>
-                <h4>Email:</h4>
-                <p>info@example.com</p>
-              </div>
+    <div class="row mt-5">
 
-              <div class="phone">
-                <i class="bi bi-phone"></i>
-                <h4>Call:</h4>
-                <p>+1 5589 55488 55s</p>
-              </div>
-
-            </div>
-
+      <div class="col-lg-4">
+        <div class="info">
+          <div class="address">
+            <i class="bi bi-geo-alt"></i>
+            <h4>Informace o tobě</h4>
+           
           </div>
 
-          <div class="col-lg-8 mt-5 mt-lg-0">
-
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                </div>
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                </div>
-              </div>
-              <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-              </div>
-              <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
-            </form>
+          <div class="email">
+            <i class="bi bi-envelope"></i>
+            <h4>Heslo</h4>
 
           </div>
 
         </div>
 
       </div>
-    </section>
 
-  </main>
+      <div class="col-lg-8 mt-5 mt-lg-0">
+
+        <form action="./login.php" method="post" role="form" class="php-email-form">
+          <div class="form-group mt-3">
+              <input type="email" class="form-control" name="email" id="email" placeholder="tvůj email" required>
+          </div>
+          <div class="form-group mt-3">
+              <input type="password" name="heslo" class="form-control" id="heslo" placeholder="tvá heslo" required>
+          </div>
+
+          <div class="my-3">
+                <div id="error-message" class="error-message"></div>
+                <div id="sent-message" class="sent-message"></div>
+              </div>
+    
+          <p>Ještě nejsi zaregistrivaný?<a href="./register.php" > Zaregistruj se...</a></p>
+
+          <div class="text-center"><button type="submit" name="prihlas">Přihlásit se</button></div>
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+</main>
 
   <?php
   include "./downmenu.php";
@@ -99,10 +92,42 @@ include "./menu.php";
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+
 
   <script src="assets/js/main.js"></script>
 
-</body>
 
+  <?php
+    if(isset($_POST["prihlas"]))
+    {
+        $query=$conn->prepare("select email,heslo,opravneni,idUz from users where email = ?");
+        $query->bind_param("s",$_POST["email"]);
+        $query->execute();
+        $query->store_result();
+        $query->bind_result($email,$heslo,$opravneni,$idUz);
+        $vysledek=$query->fetch();
+        $query->close();
+       if(password_verify($_POST["heslo"],$heslo))
+       {
+        $_SESSION["email"]=$_POST["email"];
+        $_SESSION["opravneni"]=$opravneni;
+        $_SESSION["idUz"]=$idUz;
+        echo '<script> document.getElementById("sent-message").innerHTML = "Úspěšně jste se přihlásili."; </script>';
+       }
+       else
+       {
+        echo '<script> document.getElementById("error-message").innerHTML = "Chybné přihlašovací údaje."; </script>';
+       }
+
+
+
+
+        
+    }
+
+  ?>
+</body>
+<?php
+include "./menu.php"; 
+?>
 </html>

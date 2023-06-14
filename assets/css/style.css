@@ -1,14 +1,3 @@
-/**
-* Template Name: Mentor
-* Updated: May 30 2023 with Bootstrap v5.3.0
-* Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
-/*--------------------------------------------------------------
-# General
---------------------------------------------------------------*/
 body {
   font-family: "Open Sans", sans-serif;
   color: #444444;
@@ -33,9 +22,7 @@ h6 {
   font-family: "Raleway", sans-serif;
 }
 
-/*--------------------------------------------------------------
-# Back to top button
---------------------------------------------------------------*/
+
 .back-to-top {
   position: fixed;
   visibility: hidden;
@@ -66,9 +53,7 @@ h6 {
   opacity: 1;
 }
 
-/*--------------------------------------------------------------
-# Preloader
---------------------------------------------------------------*/
+
 #preloader {
   position: fixed;
   top: 0;
@@ -104,18 +89,14 @@ h6 {
   }
 }
 
-/*--------------------------------------------------------------
-# Disable aos animation delay on mobile devices
---------------------------------------------------------------*/
+
 @media screen and (max-width: 768px) {
   [data-aos-delay] {
     transition-delay: 0 !important;
   }
 }
 
-/*--------------------------------------------------------------
-# Header
---------------------------------------------------------------*/
+
 #header {
   background: #c8cbc8;
   transition: all 0.5s;
@@ -167,12 +148,6 @@ t-started-btn {
   }
 }
 
-/*--------------------------------------------------------------
-# Navigation Menu
---------------------------------------------------------------*/
-/**
-* Desktop Navigation 
-*/
 .navbar {
   padding: 0;
 }
@@ -283,9 +258,6 @@ t-started-btn {
   }
 }
 
-/**
-* Mobile Navigation 
-*/
 .mobile-nav-toggle {
   color: #37423b;
   font-size: 28px;
@@ -393,9 +365,7 @@ t-started-btn {
   display: block;
 }
 
-/*--------------------------------------------------------------
-# Hero Section
---------------------------------------------------------------*/
+
 #hero {
   width: 100%;
   height: 80vh;
@@ -481,9 +451,7 @@ t-started-btn {
   }
 }
 
-/*--------------------------------------------------------------
-# Sections General
---------------------------------------------------------------*/
+
 section {
   padding: 60px 0;
   overflow: hidden;
@@ -531,7 +499,7 @@ section {
 .breadcrumbs {
   margin-top: 73px;
   text-align: center;
-  background: #c8cbc8;
+  background: #eef0ef;
   padding: 30px 0;
   color: #4a5b79;
 }
@@ -552,9 +520,7 @@ section {
   margin-bottom: 0;
 }
 
-/*--------------------------------------------------------------
-# About
---------------------------------------------------------------*/
+
 .about .content h3 {
   font-weight: 600;
   font-size: 26px;
@@ -586,8 +552,25 @@ section {
   display: inline-block;
 }
 
+.jedna .learn-more-btn {
+  background: #c8cbc8;
+  color: #4a5b79;
+  border-radius: 50px;
+  padding: 8px 25px 9px 25px;
+  white-space: nowrap;
+  transition: 0.3s;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.jedna .learn-more-btn:hover {
+  background: #4a5b79;
+  color: #fff;
+}
+
+
 .about .content .learn-more-btn:hover {
-  background: #3ac162;
+  background: #4a5b79;
   color: #fff;
 }
 
@@ -598,9 +581,7 @@ section {
   }
 }
 
-/*--------------------------------------------------------------
-# Counts
---------------------------------------------------------------*/
+
 
 .counts {
   padding: 30px 0;
@@ -622,9 +603,7 @@ section {
   color: #4a5b79;
 }
 
-/*--------------------------------------------------------------
-# Why Us
---------------------------------------------------------------*/
+
 .why-us .content {
   padding: 30px;
   background: #4a5b79;
@@ -688,9 +667,7 @@ section {
   color: #848484;
 }
 
-/*--------------------------------------------------------------
-# Features
---------------------------------------------------------------*/
+
 .features {
   padding-top: 0px;
 }
@@ -730,9 +707,7 @@ section {
   color: #4a5b79;
 }
 
-/*--------------------------------------------------------------
-# Courses
---------------------------------------------------------------*/
+
 .courses .course-item {
   border-radius: 5px;
   border: 1px solid #eef0ef;
@@ -763,7 +738,7 @@ section {
 
 .courses .course-content h4 {
   font-size: 14px;
-  background: #5fcf80;
+  background: #4a5b79;
   padding: 7px 14px;
   color: #fff;
   margin: 0;
@@ -798,9 +773,7 @@ section {
   color: #657a6d;
 }
 
-/*--------------------------------------------------------------
-# Trainers
---------------------------------------------------------------*/
+
 .trainers .member {
   text-align: center;
   margin-bottom: 20px;
@@ -845,7 +818,7 @@ section {
 }
 
 .trainers .member .social a:hover {
-  color: #5fcf80;
+  color: #4a5b79;
 }
 
 .trainers .member .social i {
@@ -853,9 +826,7 @@ section {
   margin: 0 2px;
 }
 
-/*--------------------------------------------------------------
-# Testimonials
---------------------------------------------------------------*/
+
 .testimonials .testimonial-wrap {
   padding-left: 50px;
 }
@@ -930,11 +901,11 @@ section {
   height: 12px;
   background-color: #fff;
   opacity: 1;
-  border: 1px solid #5fcf80;
+  border: 1px solid #4a5b79;
 }
 
 .testimonials .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #5fcf80;
+  background-color: #c8cbc8;
 }
 
 @media (max-width: 767px) {
@@ -958,9 +929,25 @@ section {
   }
 }
 
-/*--------------------------------------------------------------
-# Cource Details
---------------------------------------------------------------*/
+.container .btn-get-started { 
+  border: 2px solid #4a5b79;
+      color: #4a5b79;
+      letter-spacing: 1px;
+      display: inline-block;
+      padding: 5px 5px;
+      border-radius: 25px;
+      transition: 0.5s;
+      margin-top: 15px;
+      text-align: center;
+ 
+}
+.container .btn-get-started:hover { 
+  background: #c8cbc8;
+  border: 2px solid #4a5b79;
+  color: #4a5b79;
+ 
+}
+
 .course-details h3 {
   font-size: 24px;
   margin: 30px 0 15px 0;
@@ -986,7 +973,7 @@ section {
   display: block;
   width: 60px;
   height: 1px;
-  background: #5fcf80;
+  background: #c8cbc8;
   bottom: 0;
   left: 0;
 }
@@ -1013,9 +1000,7 @@ section {
   color: #657a6d;
 }
 
-/*--------------------------------------------------------------
-# Cource Details Tabs
---------------------------------------------------------------*/
+
 .cource-details-tabs {
   overflow: hidden;
   padding-top: 0;
@@ -1037,12 +1022,12 @@ section {
 }
 
 .cource-details-tabs .nav-link:hover {
-  color: #5fcf80;
+  color: #4a5b79 ;
 }
 
 .cource-details-tabs .nav-link.active {
-  color: #5fcf80;
-  border-color: #5fcf80;
+  color: #c8cbc8;
+  border-color: #4a5b79 ;
 }
 
 .cource-details-tabs .tab-pane.active {
@@ -1072,13 +1057,11 @@ section {
 
   .cource-details-tabs .nav-link.active {
     color: #fff;
-    background: #5fcf80;
+    background: #4a5b79 ;
   }
 }
 
-/*--------------------------------------------------------------
-# Events
---------------------------------------------------------------*/
+
 .events .card {
   border: 0;
   padding: 0 30px;
@@ -1133,7 +1116,7 @@ section {
 }
 
 .events .read-more a:hover {
-  color: #5fcf80;
+  color: #4a5b79 ;
 }
 
 .events .card:hover img {
@@ -1141,16 +1124,14 @@ section {
 }
 
 .events .card:hover .card-body {
-  border-color: #5fcf80;
+  border-color: #4a5b79 ;
 }
 
 .events .card:hover .card-body .card-title a {
-  color: #5fcf80;
+  color: #4a5b79 ;
 }
 
-/*--------------------------------------------------------------
-# Pricing
---------------------------------------------------------------*/
+
 .pricing .box {
   padding: 20px;
   background: #fff;
@@ -1173,7 +1154,7 @@ section {
 
 .pricing h4 {
   font-size: 36px;
-  color: #5fcf80;
+  color: #4a5b79 ;
   font-weight: 600;
   font-family: "Poppins", sans-serif;
   margin-bottom: 20px;
@@ -1205,7 +1186,7 @@ section {
 }
 
 .pricing ul i {
-  color: #5fcf80;
+  color: #4a5b79 ;
   font-size: 18px;
   padding-right: 4px;
 }
@@ -1223,7 +1204,7 @@ section {
 }
 
 .pricing .btn-buy {
-  background: #5fcf80;
+  background: #c8cbc8;
   display: inline-block;
   padding: 8px 35px;
   border-radius: 50px;
@@ -1237,12 +1218,12 @@ section {
 }
 
 .pricing .btn-buy:hover {
-  background: #3ac162;
+  background: #c8cbc8;
 }
 
 .pricing .featured h3 {
   color: #fff;
-  background: #5fcf80;
+  background: #c8cbc8 ;
 }
 
 .pricing .advanced {
@@ -1254,13 +1235,11 @@ section {
   z-index: 1;
   font-size: 14px;
   padding: 1px 0 3px 0;
-  background: #5fcf80;
+  background: #c8cbc8 ;
   color: #fff;
 }
 
-/*--------------------------------------------------------------
-# Contact
---------------------------------------------------------------*/
+
 .contact {
   padding-top: 5px;
 }
@@ -1272,7 +1251,7 @@ section {
 
 .contact .info i {
   font-size: 20px;
-  color: #5fcf80;
+  color: #4a5b79;
   float: left;
   width: 44px;
   height: 44px;
@@ -1307,7 +1286,7 @@ section {
 .contact .info .email:hover i,
 .contact .info .address:hover i,
 .contact .info .phone:hover i {
-  background: #5fcf80;
+  background: #c8cbc8;
   color: #fff;
 }
 
@@ -1321,12 +1300,13 @@ section {
 }
 
 .contact .php-email-form .error-message {
-  display: none;
-  color: #fff;
-  background: #ed3c0d;
+ /* display: none;*/
+  color: red;
+  /*background: #c8cbc8;*/
   text-align: left;
   padding: 15px;
   font-weight: 600;
+  text-align: center;
 }
 
 .contact .php-email-form .error-message br+br {
@@ -1334,9 +1314,9 @@ section {
 }
 
 .contact .php-email-form .sent-message {
-  display: none;
-  color: #fff;
-  background: #18d26e;
+ /*display: none;*/
+  color: #111;
+  /*background: #c8cbc8;*/
   text-align: center;
   padding: 15px;
   font-weight: 600;
@@ -1356,7 +1336,7 @@ section {
   width: 24px;
   height: 24px;
   margin: 0 10px -6px 0;
-  border: 3px solid #18d26e;
+  border: 3px solid #4a5b79;
   border-top-color: #eee;
   animation: animate-loading 1s linear infinite;
 }
@@ -1370,7 +1350,7 @@ section {
 
 .contact .php-email-form input:focus,
 .contact .php-email-form textarea:focus {
-  border-color: #5fcf80;
+  border-color: #4a5b79;
 }
 
 .contact .php-email-form input {
@@ -1382,7 +1362,7 @@ section {
 }
 
 .contact .php-email-form button[type=submit] {
-  background: #5fcf80;
+  background: #c8cbc8;
   border: 0;
   padding: 10px 35px;
   color: #fff;
@@ -1391,7 +1371,7 @@ section {
 }
 
 .contact .php-email-form button[type=submit]:hover {
-  background: #3ac162;
+  background: #4a5b79;
 }
 
 @keyframes animate-loading {
@@ -1404,9 +1384,7 @@ section {
   }
 }
 
-/*--------------------------------------------------------------
-# Footer
---------------------------------------------------------------*/
+
 #footer {
   color: #37423b;
   font-size: 14px;
@@ -1458,7 +1436,7 @@ section {
 
 #footer .footer-top .footer-links ul i {
   padding-right: 2px;
-  color: #5fcf80;
+  color: #4a5b79;
   font-size: 18px;
   line-height: 1;
 }
@@ -1482,7 +1460,7 @@ section {
 
 #footer .footer-top .footer-links ul a:hover {
   text-decoration: none;
-  color: #5fcf80;
+  color: #4a5b79;
 }
 
 #footer .footer-newsletter {
@@ -1522,7 +1500,7 @@ section {
   background: none;
   font-size: 16px;
   padding: 0 20px 2px 20px;
-  background: #5fcf80;
+  background: #c8cbc8;
   color: #fff;
   transition: 0.3s;
   border-radius: 50px;
@@ -1530,7 +1508,7 @@ section {
 }
 
 #footer .footer-newsletter form input[type=submit]:hover {
-  background: #3ac162;
+  background: #c8cbc8;
 }
 
 #footer .credits {
@@ -1539,12 +1517,12 @@ section {
 }
 
 #footer .credits a {
-  color: #3ac162;
+  color: #4a5b79;
   transition: 0.3s;
 }
 
 #footer .credits a:hover {
-  color: #5fcf80;
+  color: #4a5b79;
 }
 
 #footer .social-links a {
