@@ -2,11 +2,11 @@
 session_start();
 include "./db.php";
 
-          $query1=$conn->prepare("select idProg,nazev,popis,zacatek,konec,mistoKonani,obraz from program where idProg=".$_GET['id'].";");
+          $query1=$conn->prepare("select idProg,nazev,popis,zacatek,konec,mistoKonani,obraz,popis_2,vyhry,sponzori from program where idProg=".$_GET['id'].";");
           $query1->execute();
           $query1->store_result();
-          $query1->bind_result($idProg,$nazev,$popis,$zacatek,$konec,$mistoKonani,$obraz);
-          $vysledek=$spol=$query1->fetch();
+          $query1->bind_result($idProg,$nazev,$popis,$zacatek,$konec,$mistoKonani,$obraz,$popis_2,$vyhry,$sponzori);
+
 
 ?>
 
@@ -27,10 +27,15 @@ include "./menu.php";
 
   <main id="main">
 
-    
-    <div class="breadcrumbs" data-aos="fade-in">
+
+  <?php
+
+          while($spol=$query1->fetch())
+              {
+                echo'  
+               <div class="breadcrumbs" data-aos="fade-in">
       <div class="container">
-        <h2>#nazev_akce</h2>
+        <h2>'.$nazev.'</h2>
       </div>
     </div>
 
@@ -41,7 +46,7 @@ include "./menu.php";
         <div class="row">
           <div class="col-lg-8">
             <img src="assets/img/course-details.jpg" class="img-fluid" alt="">
-            <h3>#nazev_akce</h3>
+            <h3>'.$nazev.'</h3>
             <p>
               #text
 
@@ -51,19 +56,33 @@ include "./menu.php";
 
             <div class="course-info d-flex justify-content-between align-items-center">
               <h5>Místnost</h5>
-              <p><a href="#"> #text_mistnost</a></p>
+              <p><a href="#">'.$mistoKonani.'</a></p>
+            </div>';
+            
+            if($zacatek==$konec)
+            {
+            echo '<div class="course-info d-flex justify-content-between align-items-center">
+              <h5>Čas</h5>
+              <p>'.$zacatek.'</p>
+            </div>';
+            }
+            else {
+              echo '
+              <div class="course-info d-flex justify-content-between align-items-center">
+              <h5>Začátek</h5>
+              <p>'.$zacatek.'</p>
             </div>
 
             <div class="course-info d-flex justify-content-between align-items-center">
-              <h5>Čas</h5>
-              <p>#text_cas_zacatek</p>
-            </div>
+              <h5>Konec</h5>
+              <p>'.$konec.'</p>
+            </div>';
 
-            <div class="course-info d-flex justify-content-between align-items-center">
-              <h5>Čas</h5>
-              <p>#text_cas_konec</p>
-            </div>
+            }
 
+         
+
+     echo '
           </div>
         </div>
 
@@ -77,18 +96,15 @@ include "./menu.php";
           <div class="col-lg-3">
             <ul class="nav nav-tabs flex-column">
               <li class="nav-item">
-                <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">#popis_akce</a>
+                <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">Popis akce</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#tab-2">#pokyny_k_akci</a>
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Výhry</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#tab-3">#mozne_vyhry</a>
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Sponzoři</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#tab-4">#sponzoři</a>
-              </li>
-              
+      
                 <a class="btn-get-started" data-bs-toggle="tab" href="./neco.php">Přihlášení na akci</a>
               
             </ul>
@@ -98,9 +114,9 @@ include "./menu.php";
               <div class="tab-pane active show" id="tab-1">
                 <div class="row">
                   <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>#popis_akce</h3>
+                    <h3>Popis akce</h3>
                     <p class="fst-italic">#text_databaze</p>
-                    <p>#text_databaze</p>
+                    <p>'.$popis_2.'</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
                     <img src="assets/img/course-details-tab-1.png" alt="" class="img-fluid">
@@ -110,33 +126,21 @@ include "./menu.php";
               <div class="tab-pane" id="tab-2">
                 <div class="row">
                   <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>#pokyny_k_akci</h3>
+                    <h3>Výhry</h3>
                     <p class="fst-italic">#text_databaze</p>
-                    <p>#text_databaze</p>
-                  </div>
-                  <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="assets/img/course-details-tab-2.png" alt="" class="img-fluid">
-                  </div>
-                </div>
-              </div>
-              <div class="tab-pane" id="tab-3">
-                <div class="row">
-                  <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>#mozne_vyhry</h3>
-                    <p class="fst-italic">#text_databaze</p>
-                    <p>#text_databaze</p>
+                    <p>'.$vyhry.'</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
                     <img src="assets/img/course-details-tab-3.png" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
-              <div class="tab-pane" id="tab-4">
+              <div class="tab-pane" id="tab-3">
                 <div class="row">
                   <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>#sponzoři</h3>
+                    <h3>Sponzoři</h3>
                     <p class="fst-italic">#text_databaze</p>
-                    <p>#text_databaze</p>
+                    <p>'.$sponzori.'</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
                     <img src="assets/img/course-details-tab-4.png" alt="" class="img-fluid">
@@ -149,7 +153,13 @@ include "./menu.php";
 
       </div>
     </section>
+  ';
+              
+       }
 
+        ?>
+    
+    
   </main>
 
   <?php

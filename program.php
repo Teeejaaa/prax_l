@@ -35,10 +35,10 @@ include "./menu.php";
 
         <?php
 
-          $query1=$conn->prepare("select idProg,nazev,popis,zacatek,konec,mistoKonani,obraz from program;");
+          $query1=$conn->prepare("select idProg,nazev,popis,zacatek,konec,mistoKonani,obraz,popis_2,vyhry,sponzori from program;");
           $query1->execute();
           $query1->store_result();
-          $query1->bind_result($idProg,$nazev,$popis,$zacatek,$konec,$mistoKonani,$obraz);
+          $query1->bind_result($idProg,$nazev,$popis,$zacatek,$konec,$mistoKonani,$obraz,$popis_2,$vyhry,$sponzori);
           $akcikarray=array();
           while($spol=$query1->fetch())
               {
@@ -48,8 +48,22 @@ include "./menu.php";
                     <img src="assets/img/'.$obraz.'" class="img-fluid" alt="...">
                     <div class="course-content">
                       <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4>'.$mistoKonani.'</h4>
-                        <p class="price">'.$zacatek.' - '.$konec.'</p>
+                        <h4>'.$mistoKonani.'</h4>';
+
+                        if($zacatek==$konec)
+                        {
+                        echo '
+                        <p class="price">'.$zacatek.'</p>
+                        ';
+                        }
+                        else {
+                          echo '
+                            <p class="price">'.$zacatek.' - '.$konec.'</p>
+                            ';
+            
+                        }
+            
+                        echo '
                       </div>
 
                       <h3><a href="course-details.html">'.$nazev.'</a></h3>
