@@ -105,7 +105,7 @@ include "./menu.php";
                 <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Sponzoři</a>
               </li>
       
-                <a class="btn-get-started" data-bs-toggle="tab" href="./neco.php">Přihlášení na akci</a>
+                <a class="btn-get-started" data-bs-toggle="tab" href="./register_akce.php">Přihlášení na akci</a>
               
             </ul>
           </div>
@@ -175,7 +175,6 @@ include "./menu.php";
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
 
 
   <script src="assets/js/main.js"></script>

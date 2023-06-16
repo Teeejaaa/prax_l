@@ -53,7 +53,7 @@ if(isset($_POST["reg"]))
                     $query->execute();
                     $vysledek=$query->store_result();
                     $query->close();
-                    header("Location: ./regiter_akce.php");
+                    header("Location: ./register_akce.php");
                 }
                 else
                 {
@@ -69,6 +69,7 @@ if(isset($_POST["reg"]))
 
 }
 
+
 $query=$conn->prepare("select idProg,nazev from program where registrace = 1 order by nazev ASC");
 $query->execute();
 $query->store_result();
@@ -78,17 +79,17 @@ $query->bind_result($idProg,$nazev);
 
 ?>
 
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
 
-<title>Registrace</title>
-<script type="text/javascript" src="https://www.google.com/recaptcha/api.js"></script>
 <?php 
-
 include "./header.php";
 ?>
+
+<title>Registrace na akci</title>
+
 
 <body>
 
@@ -98,6 +99,23 @@ include "./menu.php";
 
   <main id="main">
 
+  <?php 
+                        echo '<table>';
+                        echo '<tr><th>Kde jsi přihlášený</th><th class="druhy_slup"></th></tr>';
+                        foreach($akcikarray as $akcik)
+                        {
+                            echo '<tr>';
+                                echo '<td>';
+                                    echo $akcik["nazev1"];
+                                echo '</td>';
+                                echo '<td >';
+                                    echo '<a href="smazto.php?idReg='.$akcik["idReg1"].'" >Odhlásit se z akce</a>';
+                                echo '</td>';
+                            echo '</tr>';
+                        }
+                        echo '</table>';
+                        
+                    ?>
    
     <div class="breadcrumbs" data-aos="fade-in">
       <div class="container">
@@ -136,21 +154,21 @@ include "./menu.php";
             <form action="./register_akce.php" method="post" class="php-email-form">
 
               <div class="form-group mt-3">
-              
+               
                     <select class="form-control" name="akce" id="akce">
                             <?php
-                            while($akcik=$query->fetch())
-                            {
-                                if((isset($_GET["idPred"]))&&($_GET["idPred"]==$idPred))
+                                while($akcik=$query->fetch())
                                 {
-                                    echo '<option value="'.$idPred.'" selected="selected" >'.$nazev.'</option>';
+                                    if((isset($_GET["idProg"]))&&($_GET["idProg"]==$idProg))
+                                    {
+                                        echo '<option value="'.$idProg.'" selected="selected" >'.$nazev.'</option>';
+                                    }
+                                    else
+                                    {
+                                        echo '<option value="'.$idProg.'" >'.$nazev.'</option>'; 
+                                    }
+        
                                 }
-                                else
-                                {
-                                    echo '<option value="'.$idPred.'" >'.$nazev.'</option>'; 
-                                }
-
-                            }
                             
                             
                             $query->close();
@@ -159,49 +177,48 @@ include "./menu.php";
                     </select>
 
                 </div>
-                <?php
+               <?php
+               /*
 
-                    $query=$conn->prepare("select idPred,nazev from prednaska;");
-                    $query->execute();
-                    $query->store_result();
-                    $query->bind_result($idPred,$nazev);
-            if($idProg=4)
-                { echo '<div class="row">';
-                    while($akcik=$query->fetch())
+                    $query3=$conn3->prepare("select idPred,nazev from prednaska");
+                    $query3->execute();
+                    $query3->store_result();
+                    $query3->bind_result($idPred,$nazev);
+           
+                  
+                    while($akcik2=$query3->fetch())
                     {
-                        if((isset($_GET["idPred"]))&&($_GET["idPred"]==$idPred))
+                      echo '<div class="row">';
+                        if($idProg==4)
                         {
                             echo '<div class="col-md-6 form-group"><option value="'.$idPred.'" selected="selected" >'.$nazev.'</option> </div>';
+                            echo'
+                              <div class="col-md-6 form-group mt-3 mt-md-0">
+                                    <input type="text" class="form-control" name="pozn" id="pozn" placeholder="poznámka" required>
+                                  </div>
+                              </div>  
+                              ';
+                        
+                        
                         }
-                        else
-                        {
-                            echo '<option value="'.$idPred.'" >'.$nazev.'</option>'; 
-                        }
+                        else {
+                        echo'
+                          <div class="row">
+                              <div class="col-md-6 form-group mt-3 mt-md-0">
+                                <input type="text" class="form-control" name="pozn" id="pozn" placeholder="poznámka" required>
+                              </div>
+                          </div>';
 
-                    }
-                    echo'
-                
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="text" class="form-control" name="poznamka" id="poznamka" placeholder="poznámka" required>
-                </div>
-            </div>  
-                    ';
+                         }
+                   
                 }
-                else {
-                    echo'
-                <div class="row">
-                    <div class="col-md-6 form-group mt-3 mt-md-0">
-                      <input type="text" class="form-control" name="poznamka" id="poznamka" placeholder="poznámka" required>
-                    </div>
-                </div>';
-
-                }
-                $query->close();
+                $query3->close();
+                */
                 ?>
 
 
-
-              <div class="text-center"><button type="submit" name="reg_akce">Registrovat se na akci</button></div>
+              <?php echo'<input type="hidden" name="user_id" value="'.$_SESSION["idUz"].'" >'; ?>
+              <div class="text-center"><button type="submit" name="reg">Registrovat se na akci</button></div>
               
             </form>
 
@@ -229,75 +246,6 @@ include "./downmenu.php";
 
   <script src="assets/js/main.js"></script>
 
-
-<?php
-
-
-if(isset($_POST["registrovat"]))
-{
-    $recaptcha = json_decode(file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.recaptcha_config::GOOGLE_RECAPTCHA_SECRET_KEY.'&response=' . $_POST['g-recaptcha-response']));
-    if ($recaptcha->{'success'} == 'true') 
-    {
-            
-   
-        if(str_contains($_POST["email"],"@spseiostrava.cz"))
-        {
-            if(strlen($_POST["heslo"])>=8)
-            {
-                if(($_POST["heslo"])==($_POST["heslo_znovu"]))
-                {
-                    $query=$conn->prepare("select email from users where email = ?");
-                    $query->bind_param("s",$_POST["email"]);
-                    $query->execute();
-                    $query->store_result();
-                    $vysledek=$query->fetch();
-                    $query->close();
-                        if($vysledek==NULL)
-                        {
-                            $heslo=password_hash($_POST["heslo"],PASSWORD_DEFAULT);
-
-                            $query=$conn->prepare("insert into users(email,heslo) values(?,?)");
-                            $query->bind_param("ss",$_POST["email"],$heslo);
-                            $query->execute();
-                            $vysledek=$query->store_result();
-                            $query->close();
-                                    if($vysledek==TRUE)
-                                    {
-                                      echo '<script> document.getElementById("sent-message").innerHTML = "Úspěšně ses zaregistroval. Vítej!"; </script>';
-                                    }
-
-                        }
-                        else
-                        {
-                          echo '<script> document.getElementById("error-message").innerHTML = "Uživatel již existuje."; </script>';
-                        }
-                }
-                else
-                {
-                  echo '<script> document.getElementById("error-message").innerHTML = "Hesla se neshodují."; </script>';
-                } 
-            
-            }
-            else
-            {
-              echo '<script> document.getElementById("error-message").innerHTML = "Heslo musí obsahovat minimálně 8 znaků."; </script>';  
-
-            }
-        
-        }
-        else
-        {
-          echo '<script> document.getElementById("error-message").innerHTML = "Použijte školní email."; </script>';
-        }
-
-    }
-    else 
-    {
-      echo '<script> document.getElementById("error-message").innerHTML = "Jsi si jisty, že žiješ?"; </script>';
-    }
-}
-
-?>
 </body>
 
 </html>
